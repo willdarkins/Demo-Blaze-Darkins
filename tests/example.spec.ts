@@ -32,7 +32,7 @@ test('Working with inputs... Negative login scenario', async ({ page }) => {
     await logInButton.click()
 })
 
-test.only('Assertions', async ({ page }) => {
+test('Assertions @myTag', async ({ page }) => {
     await page.goto('https://www.demoblaze.com/index.html')
     await expect(page).toHaveURL('https://www.demoblaze.com/index.html')
     
@@ -43,4 +43,10 @@ test.only('Assertions', async ({ page }) => {
 
     const nonExistingElement = await page.locator('h10')
     await expect(nonExistingElement).not.toBeVisible()
+})
+
+test.only('basic assertion fun', async ({ page }) => {
+    await page.goto('https://playwright.dev/docs/test-assertions')
+    const title = page.locator('h1')
+    await expect(title).toHaveText('Assertions', {timeout: 1000})
 })
