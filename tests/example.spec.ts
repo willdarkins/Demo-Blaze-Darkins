@@ -45,8 +45,20 @@ test('Assertions @myTag', async ({ page }) => {
     await expect(nonExistingElement).not.toBeVisible()
 })
 
-test.only('basic assertion fun', async ({ page }) => {
+test('basic assertion fun', async ({ page }) => {
     await page.goto('https://playwright.dev/docs/test-assertions')
     const title = page.locator('h1')
     await expect(title).toHaveText('Assertions', {timeout: 1000})
 })
+
+test('example screenshot', async ({ page }) => {
+    await page.goto('https://playwright.dev')
+    await page.screenshot({ path: "screenshot.png", fullPage: true })
+})
+
+test.only('single element screenshot', async ({ page }) => {
+    await page.goto('https://playwright.dev')
+    const element = await page.$('h1')
+    await element?.screenshot({ path: 'single_element_screenshot.png' })
+})
+

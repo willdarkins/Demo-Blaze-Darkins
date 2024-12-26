@@ -1,14 +1,8 @@
 import { chromium, PlaywrightTestConfig } from "@playwright/test";
 
-//Assigning the config object to a variable to export below
 const config: PlaywrightTestConfig = {
-//Setting global timeout for how long it should take for tests to finish
     timeout: 6000,
-
-//Number of times you want playwright to re-run failing tests
     retries: 0,
-
-//Indicating browswer specific options
     use: {
         headless: true, //will run tests automatically in headless mode
         viewport: { width: 1280, height: 720 }, //specify width and height of browser
@@ -17,7 +11,6 @@ const config: PlaywrightTestConfig = {
         video: 'off',
         screenshot: 'off', 
     },
-//Providing specific settings for specific browsers    
     projects:[
         {
             name: 'Chromium',
