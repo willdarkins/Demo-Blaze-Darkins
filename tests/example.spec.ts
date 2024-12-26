@@ -18,7 +18,7 @@ test('Clicking on Elements', async ({ page }) => {
     await logInButton.click()
 })
 
-test.only('Working with inputs... Negative login scenario', async ({ page }) => {
+test('Working with inputs... Negative login scenario', async ({ page }) => {
     await page.goto('https://www.demoblaze.com/index.html')
     await page.click('#login2')
     await page.fill('#loginusername', 'some username')
@@ -30,4 +30,17 @@ test.only('Working with inputs... Negative login scenario', async ({ page }) => 
         await dialog.accept(); 
     })
     await logInButton.click()
+})
+
+test.only('Assertions', async ({ page }) => {
+    await page.goto('https://www.demoblaze.com/index.html')
+    await expect(page).toHaveURL('https://www.demoblaze.com/index.html')
+    
+    const element = await page.locator('#nava')
+    await expect(element).toBeVisible
+    await expect(element).toHaveText(' PRODUCT STORE')
+    await expect(element).toHaveCount(1)
+
+    const nonExistingElement = await page.locator('h10')
+    await expect(nonExistingElement).not.toBeVisible()
 })
