@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test'
+import { loadHomepage, assertTitle } from '../helpers'
 
 test('Simple basic test', async ({ page }) => {
     await page.goto('https://www.demoblaze.com/index.html#')
@@ -51,7 +52,7 @@ test('basic assertion fun', async ({ page }) => {
     await expect(title).toHaveText('Assertions', {timeout: 1000})
 })
 
-test.describe.only('trying out some hooks', () => {
+test.describe('trying out some hooks', () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto('https://playwright.dev')
@@ -63,5 +64,10 @@ test.describe.only('trying out some hooks', () => {
         const element = await page.$('h1')
         await element?.screenshot({ path: 'single_element_screenshot.png' })
     })
+})
+
+test.only('custom helpers', async ({ page }) => {
+    await loadHomepage(page);
+    await assertTitle(page);
 })
 
