@@ -1,5 +1,4 @@
 import { test, expect } from '@playwright/test'
-import { loadHomepage, assertTitle } from '../helpers'
 
 test('Simple basic test', async ({ page }) => {
     await page.goto('https://www.demoblaze.com/index.html#')
@@ -65,9 +64,3 @@ test.describe('trying out some hooks', () => {
         await element?.screenshot({ path: 'single_element_screenshot.png' })
     })
 })
-
-test.only('custom helpers', async ({ page }) => {
-    await loadHomepage(page);
-    await assertTitle(page);
-})
-
