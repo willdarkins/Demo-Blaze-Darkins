@@ -3,13 +3,14 @@ import { chromium, PlaywrightTestConfig } from "@playwright/test";
 const config: PlaywrightTestConfig = {
     timeout: 6000,
     retries: 0,
+    testDir: 'tests/e2e',
     use: {
         headless: true, //will run tests automatically in headless mode
         viewport: { width: 1280, height: 720 }, //specify width and height of browser
-        actionTimeout: 15000, //amount of time given to selectors to complete before timeout
+        actionTimeout: 10000, //amount of time given to selectors to complete before timeout
         ignoreHTTPSErrors: true, //exactly what it says
-        video: 'retain-on-failure',
-        screenshot: 'only-on-failure', 
+        video: 'off',
+        screenshot: 'off', 
     },
     projects:[
         {

@@ -51,7 +51,7 @@ test('basic assertion fun', async ({ page }) => {
     await expect(title).toHaveText('Assertions', {timeout: 1000})
 })
 
-test.describe('trying out some hooks', () => {
+test.describe.parallel.only('trying out some hooks', () => {
 
     test.beforeEach(async ({ page }) => {
         await page.goto('https://playwright.dev')
