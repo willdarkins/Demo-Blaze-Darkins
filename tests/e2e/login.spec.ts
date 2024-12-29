@@ -38,4 +38,4 @@ test.describe.parallel('login/logout flow', () => {
         const signUpLink = page.locator('#signin2')
         await expect(signUpLink).toBeVisible();
     })
-}) 
+})
