@@ -17,4 +17,7 @@ export class LoginPage {
         this.closeButton = page.locator('text=Log in')
     }
     //Define page methods
+    async visit() {
+        await this.page.goto('https://www.demoblaze.com/index.html')
+    }
 }

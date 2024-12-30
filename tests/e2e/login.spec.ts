@@ -1,8 +1,11 @@
 import { test, expect } from '@playwright/test'
+import { LoginPage } from '../../page-objects/LoginPage'
 
 test.describe.parallel('login/logout flow', () => {
+    let loginPage: LoginPage
     test.beforeEach(async ({ page }) => {
-        await page.goto('https://www.demoblaze.com/index.html#')
+        loginPage = new LoginPage(page)
+        await loginPage.visit()
     })
     //negative scenario
     test('negative-invalid username/password', async ({ page }) => {

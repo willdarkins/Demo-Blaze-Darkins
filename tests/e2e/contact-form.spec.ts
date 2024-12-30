@@ -26,7 +26,7 @@ test.describe.parallel('contact form flow', () => {
         await page.fill('#recipient-name', 'Will Darkins')
         await page.fill('#message-text', 'Call me now, please.')
 
-        const closeMessage = page.getByRole('button', { name: 'Close' })
+        const closeMessage = page.getByRole('button', { name: 'Close' }).filter({ hasText: 'Close' })
         await closeMessage.click()
     })
 })
