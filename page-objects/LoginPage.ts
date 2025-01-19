@@ -1,9 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
+import { Navbar } from "./components/Navbar";
 
-export class LoginPage {
+export class LoginPage extends Navbar {
     //Define Selectors
     readonly page: Page
-    readonly loginLink: Locator
     readonly loginTitle: Locator
     readonly usernameInput: Locator
     readonly passwordInput: Locator
@@ -14,8 +14,8 @@ export class LoginPage {
     
     //Init selectors using constructor
     constructor(page: Page) {
+        super(page)
         this.page = page
-        this.loginLink = page.locator('#login2')
         this.loginTitle = page.locator('#logInModalLabel')
         this.usernameInput = page.locator('#loginusername')
         this.passwordInput = page.locator('#loginpassword')

@@ -3,7 +3,6 @@ import { LoginPage } from "./LoginPage";
 
 export class ContactPage extends LoginPage {
     readonly page: Page
-    readonly contactLink: Locator
     readonly contactEmailLabel: Locator
     readonly contactNameLabel: Locator
     readonly contactMessageLabel: Locator
@@ -16,7 +15,6 @@ export class ContactPage extends LoginPage {
     constructor(page:Page){
         super(page)
         this.page = page
-        this.contactLink = page.getByRole('link', { name: 'Contact' }).filter({ hasText: 'Contact' })
         this.contactEmailLabel = page.locator('label').filter({ hasText: 'Contact Email:' })
         this.contactNameLabel = page.locator('label').filter({ hasText: 'Contact Name:' })
         this.contactMessageLabel = page.locator('label').filter({ hasText: 'Message:' })
