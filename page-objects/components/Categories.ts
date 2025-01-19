@@ -16,14 +16,14 @@ export class Categories {
     }
 
     async clickOnCategory(catName) {
-        const tabActions = {
+        const catActions = {
             "CATEGORIES": () => this.categoriesLink.click(),
             "Phones": () => this.phonesLink.click(),
             "Laptops": () => this.laptopsLink.click(),
             "Monitors": () => this.monitorsLink.click()
         }
         
-        const clickFunction = tabActions[catName];
+        const clickFunction = catActions[catName];
         if (clickFunction) {
             await clickFunction();
         } else {
