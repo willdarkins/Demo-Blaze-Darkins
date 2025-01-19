@@ -1,32 +1,34 @@
-import { test, expect } from '@playwright/test'
+import { test, expect } from '../../fixtures/base'
 
-test.describe.parallel('contact form flow', () => {
-    test.beforeEach(async ({ page }) => {
-        await page.goto('https://www.demoblaze.com/index.html#')
-        const contactLink = page.getByRole('link', {name: 'Contact'})
-        await contactLink.click()
+test.describe.parallel.only('contact form flow', () => {
+    
+    test.beforeEach(async ({ contactPage }) => {
+        await contactPage.visit()
+        await contactPage.contactElementsVisible()
     })
     
-    test('positive-valid form and info', async ({ page }) => {
-        await page.fill('#recipient-email', 'willdarkins@yahoo.com')
-        await page.fill('#recipient-name', 'Will Darkins')
-        await page.fill('#message-text', 'Call me now, please.')
+    test('positive-valid form and info', async ({ contactPage, page }) => {
+        await contactPage.contactFormFill(
+            'willdarkins@yahoo.com',
+            'Will Darkins',
+            'Here is a test message'
+        )
 
-        const sendMessage = page.getByRole('button', { name: 'Send Message' })
+        await contactPage.sendContactForm()
         page.on('dialog', async dialog => {
             expect(dialog.type()).toContain('alert')
             expect(dialog.message()).toContain('Thanks for the message!!')
             await dialog.accept(); 
         })
-        await sendMessage.click()
     })
 
-    test('positive-valid form and close', async ({ page }) => {
-        await page.fill('#recipient-email', 'willdarkins@yahoo.com')
-        await page.fill('#recipient-name', 'Will Darkins')
-        await page.fill('#message-text', 'Call me now, please.')
+    test('positive-valid form and close', async ({ contactPage, page }) => {
+        await contactPage.contactFormFill(
+            'willdarkins@yahoo.com',
+            'Will Darkins',
+            'Here is a test message'
+        )
 
-        const closeMessage = page.getByRole('button', { name: 'Close' }).filter({ hasText: 'Close' })
-        await closeMessage.click()
+        await contactPage.closeContactForm()
     })
 })

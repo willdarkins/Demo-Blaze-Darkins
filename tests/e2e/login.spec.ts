@@ -1,7 +1,6 @@
-import { test, expect } from '../../page-objects/base'
-import { LoginPage } from '../../page-objects/LoginPage'
+import { test, expect } from '../../fixtures/base'
 
-test.describe.parallel.only('login/logout flow', () => {
+test.describe.parallel('login/logout flow', () => {
     
     test.beforeEach(async ({ loginPage }) => {
         await loginPage.visit()
