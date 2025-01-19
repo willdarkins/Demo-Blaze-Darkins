@@ -22,30 +22,21 @@ export class Navbar {
     }
 
     async clickOnTab(tabName) {
-        switch(tabName) {
-            case "Logo":
-                await this.logo.click()
-                    break
-            case "Home":
-                await this.homeLink.click()
-                    break
-            case "Contact":
-                await this.contactLink.click()
-                    break
-            case "About us":
-                await this.aboutUsLink.click()
-                    break
-            case "Cart":
-                await this.cartLink.click()
-                    break
-            case "Log in":
-                await this.loginLink.click()
-                    break
-            case "Sign up":
-                await this.signUpLink.click()
-                    break
-            default:
-                throw new Error('Tab does not exist')  
-        } 
+        const tableActions = {
+            "Logo": () => this.logo.click(),
+            "Home": () => this.homeLink.click(),
+            "Contact": () => this.contactLink.click(),
+            "About us": () => this.contactLink.click(),
+            "Cart": () => this.cartLink.click(),
+            "Log in": () => this.loginLink.click(),
+            "Sign up": () => this.signUpLink.click()
+        }
+        
+        const clickFunction = tableActions[tabName];
+        if (clickFunction) {
+            await clickFunction();
+        } else {
+            throw new Error('Tab does not exist')
+        }
     }
 }
