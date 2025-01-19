@@ -22,7 +22,7 @@ export class Navbar {
     }
 
     async clickOnTab(tabName) {
-        const tableActions = {
+        const tabActions = {
             "Logo": () => this.logo.click(),
             "Home": () => this.homeLink.click(),
             "Contact": () => this.contactLink.click(),
@@ -32,7 +32,7 @@ export class Navbar {
             "Sign up": () => this.signUpLink.click()
         }
         
-        const clickFunction = tableActions[tabName];
+        const clickFunction = tabActions[tabName];
         if (clickFunction) {
             await clickFunction();
         } else {
